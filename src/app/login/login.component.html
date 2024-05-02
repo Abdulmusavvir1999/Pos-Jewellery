@@ -1,0 +1,82 @@
+<section class="flex justify-center items-center bg-gradient-to-r from-green-300 to-green-100 p-4 md:h-full">
+    <div class="flex flex-wrap justify-center items-stretch rounded-2xl mx-8">
+        <!-- todo Left-Side -->
+        <div class="bg-image flex flex-col justify-center items-center bg-green-100 p-8">
+            <img class="w-40 md:w-60 my-8" src="../../assets/img/login-bg.svg" alt="">
+            <h1 class="text-black font-bold text-xl mb-4 mt-2  md:text-2xl">Jewellery <span
+                    class="px-2 py-1 text-white bg-gradient-to-r from-green-400 to-green-200 rounded-full">Shop</span>
+            </h1>
+            <p class="text-gray-500 text-xs  text-center">its pure form, it is a
+                bright, <br>It is one of the least reactive chemical elements.
+            </p>
+        </div>
+
+
+        <!-- todo Right-Side -->
+        <div class=" items-stretch cursor-pointer bg-green-50 p-12">
+            <div class="text-center">
+                <h1 class="text-black font-bold text-xl mb-4 mt-2 sm:text-2xl">Jewellery <span
+                        class="px-2 py-1 text-white bg-gradient-to-r from-green-400 to-green-200 rounded-full">Shop</span>
+                </h1>
+            </div>
+            <div class="login-html">
+                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1"
+                    class="tab cursor-pointer">Sign
+                    In</label>
+
+                <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2"
+                    class="tab cursor-pointer">Sign
+                    Up</label>
+
+
+                <!-- todo sign in -->
+                <div class="login-form">
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label for="user" class="label">Username</label>
+                            <input #username [(ngModel)]="userId" id="user" type="text" class="input" required>
+                            <!-- @if (username.value == "") {
+                            <p class="text-red-600 text-xs">Enter your password</p>
+                            } -->
+                        </div>
+                        <div class="group">
+                            <label for="pass" class="label">Password</label>
+                            <input #password [(ngModel)]="Password" id="pass" type="password" class="input"
+                                data-type="password" required>
+                            <!-- @if (password.value == "") {
+                            <p class="text-red-600 text-xs">Enter your password</p>
+                            } -->
+                        </div>
+                        <p class="text-[0.8rem] underline text-gray-500  text-end mt-[-0.8rem]" for="tab-2"><a>Forget
+                                Password?</a></p>
+                        <div class="group">
+                            <button (click)="signIn()" class="button">Sign In</button>
+                        </div>
+                        <hr class="bg-green-400 w-full h-[0.05rem] border-none rounded-2xl">
+                    </div>
+
+
+                    <!-- todo sign up -->
+                    <div class="sign-up-htm">
+                        <div class="group">
+                            <label for="user" class="label">Username</label>
+                            <input id="user" type="text" class="input">
+                        </div>
+                        <div class="group">
+                            <label for="pass" class="label">Password</label>
+                            <input id="pass" type="password" class="input">
+                        </div>
+                        <div class="group">
+                            <label for="pass" class="label">Email</label>
+                            <input id="pass" type="password" class="input">
+                        </div>
+                        <div class="group">
+                            <button for="tab-1" class="button"><a href="">Sign Up</a></button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

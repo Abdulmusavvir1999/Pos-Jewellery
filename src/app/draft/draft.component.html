@@ -1,0 +1,61 @@
+<main class="bg-[#252836] p-4 h-full">
+    <div>
+        <button class="text-white absolute flex bg-black py-1 px-2 rounded-lg hover:opacity-50" (click)="back()"><img
+                class="w-6 h-6" src="../../assets/img/back-icon.svg" alt=""></button>
+        <h1 class="text-white text-center uppercase font-extrabold">Draft Items</h1>
+    </div>
+    <hr>
+    <!-- <section class="grid grid-cols-3 gap-4">
+        @for (draftItem of draftItems; track $index) {
+        <div class="bg-gray-700 text-white italic font-semibold p-2 rounded-sm shadow-sm shadow-black">
+            <p>{{draftItem.rate}}</p>
+            <p>{{draftItem.quantity}}</p>
+            <p>{{draftItem.rate}}</p>
+            <button class="border border-[#EA7C69] text-[#EA7C69] py-1 px-2 rounded-xl font-semibold hover:opacity-75"
+                (click)="removeDraft($index)">Remove</button>
+            <button class="bg-[#EA7C69] text-white py-1 px-2 mt-2 ml-2 rounded-xl font-semibold hover:opacity-75"
+                (click)="moveInvoice()">Invoice</button>
+        </div>
+
+        }
+    </section> -->
+
+    <!-- table -->
+    <section class=" bg-gray-900 border-[0.2rem] border-gray-600 p-4">
+        <div class="w-full overflow-x-scroll sm:max-h-[40rem]">
+            <table class="w-full">
+                <thead class="text-white bg-gray-800">
+                    <tr>
+                        <th>SL.</th>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                @for (draftItem of draftItems; track $index) {
+                <tbody>
+                    <tr class="text-center text-white">
+                        <td>{{$index+1}}</td>
+                        <td>{{draftItem.name}}</td>
+                        <td>{{draftItem.quantity}}</td>
+                        <td>{{draftItem.rate}}</td>
+                        <th> <button
+                                class="border border-[#EA7C69] text-[#EA7C69] py-1 px-2 rounded-xl font-semibold hover:opacity-75"
+                                (click)="removeItems($index)">Remove</button></th>
+                    </tr>
+
+                </tbody>
+                }
+                <button class="bg-[#EA7C69] text-white py-3 px-12 mt-2 ml-2 rounded-xl font-semibold hover:opacity-75"
+                    (click)="moveInvoice()">Invoice</button>
+                <button
+                    class="border border-[#EA7C69] text-white py-3 px-12 mt-2 ml-2 rounded-xl font-semibold hover:opacity-75"
+                    (click)="removeDraft($event)">Remove All</button>
+            </table>
+        </div>
+    </section>
+
+
+
+</main>

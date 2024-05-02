@@ -1,0 +1,23 @@
+aside h1 {
+    @apply text-center text-white font-extrabold text-4xl rotate-[270deg]
+}
+
+section {
+    p {
+        @apply text-gray-400 text-[1rem];
+    }
+
+    h1 {
+        @apply text-white font-semibold italic
+    }
+}
+
+tr,
+th,
+td {
+    @apply border p-2 text-gray-300 border-gray-700;
+}
+
+th {
+    @apply text-white;
+}

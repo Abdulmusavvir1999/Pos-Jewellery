@@ -1,0 +1,177 @@
+<main class="flex bg-[#1F1D2B] w-full ">
+    <aside class="bg-gray-700 relative left-0 top-0 bottom-0 p-4 md:p-10">
+        <h1>E</h1>
+        <h1>C</h1>
+        <h1>I</h1>
+        <h1>O</h1>
+        <h1>V</h1>
+        <h1>N</h1>
+        <h1>I</h1>
+    </aside>
+    <section class="w-screen">
+        <!-- back -->
+        <!-- <button (click)="back()"
+            class="bg-black rounded-full cursor-pointer relative hover:border-[#EA7C69] hover:border"><img class="w-6 h-6"
+                src="../../assets/img/back-icon.svg" alt=""></button> -->
+
+        <!-- details -->
+        <section class="flex flex-wrap justify-between">
+
+            <!-- first one -->
+            <div class="">
+                <!-- detail -->
+                <div class="p-4">
+                    <h1>Invoice To:</h1>
+                    <p class="text-2xl !text-gray-300 ">Enter Your Name</p>
+                    <p>123 Your Street Address,City,Country NY, <br> Lorem ipsum dolor sit and, adipisicing elit.
+                        <br> Soluta deleniti eum laboriosam!
+                    </p>
+                </div>
+
+                <!-- payment detail -->
+                <div class="p-4">
+                    <h1>Payment Info:</h1>
+                    <p>Account No :000 000 000 000</p>
+                    <p>A/C :Enter Your Name</p>
+                    <p>Bank Details :Enter Your Details</p>
+                </div>
+            </div>
+
+            <!-- second one -->
+            <div class="">
+                <div class="bg-gray-700 p-4">
+                    <h1>COMPANY NAME</h1>
+                    <p class="!text-gray-400">Tagline goes Here</p>
+                </div>
+
+                <div class="p-4">
+                    <p>Invoice : #000000</p>
+                    <p>Date : 00/00/0000</p>
+                </div>
+
+                <div class="p-4">
+                    <h1>Terms & Conditions:</h1>
+                    <p class="max-w-[30rem] text-gray-500">Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit.
+                        Asperiores
+                        exercitationem minima laudantium cumque ea, eum assumenda aperiam! Labore soluta pariatur </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- payment method -->
+        <section class="p-4">
+            <div class="w-full">
+
+                <!-- Payment -->
+                <hr class="border border-gray-600 mt-3 mb-2">
+                <h1 class="text-2xl text-white">Payment Method</h1>
+                <div class="flex flex-wrap w-full cursor-pointer ">
+                    <button
+                        class="flex flex-col items-center justify-center border border-gray-500 p-2 m-2 rounded-xl hover:opacity-80  text-white focus:text-[#ff4e2f] focus:border-[#ff4e2f] ">
+                        <img class="w-4 sm:w-8" src="../../assets/img/card.svg" alt="">
+                        <p class="italic font-semibold ">Credit Card</p>
+                    </button>
+                    <button
+                        class="flex flex-col items-center justify-center border border-gray-500 px-6 m-2 rounded-xl hover:opacity-80 text-white focus:text-[#ff4e2f] focus:border-[#ff4e2f] ">
+                        <img class="w-4 sm:w-8" src="../../assets/img/paypal.svg" alt="">
+                        <p class="italic font-semibold ">PayPal</p>
+                    </button>
+                    <button
+                        class="flex flex-col items-center justify-center border border-gray-500  px-9 m-2 rounded-xl hover:opacity-80 text-white focus:text-[#ff4e2f] focus:border-[#ff4e2f] ">
+                        <img class="w-4 sm:w-8" src="../../assets/img/case.svg" alt="">
+                        <p class="italic font-semibold ">Case</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- table -->
+        <section class=" bg-gray-900 border-[0.2rem] border-gray-600 p-4 relative left-[-5%]">
+            <h1 class="text-white">Order# 123</h1>
+            <div class="w-full overflow-x-scroll sm:max-h-[40rem]">
+                <table class="w-full">
+                    <thead class="text-white bg-gray-800">
+                        <tr>
+                            <th>SL.</th>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    @for (invoiceItem of invoiceItem; track $index) {
+                    <tbody>
+                        <tr class="text-center text-white">
+                            <td>{{$index+1}}</td>
+                            <td>{{invoiceItem.name}}</td>
+                            <td>{{invoiceItem.quantity}}</td>
+                            <td>{{invoiceItem.rate}}</td>
+                        </tr>
+
+                    </tbody>
+                    }
+                    @for (draftItem of draftItems; track $index) {
+                    <tbody>
+                        <tr class="text-center text-white">
+                            <td>{{$index+1}}</td>
+                            <td>{{draftItem.name}}</td>
+                            <td>{{draftItem.quantity}}</td>
+                            <td>{{draftItem.rate}}</td>
+                        </tr>
+
+                    </tbody>
+                    }
+
+                </table>
+            </div>
+            <!-- total -->
+            <hr class="border border-gray-700 my-3">
+            <!-- overall -->
+            <div>
+                <!-- sub total -->
+                <div class="flex justify-between">
+                    <p class="text-[#ABBBC2] text-center font-semibold">Sub total: </p>
+                    <p class="text-white text-center font-semibold">{{total|number:"0.0-0"}}</p>
+                </div>
+
+                <!-- Discount -->
+                <div class="flex justify-between">
+                    <p class="text-[#ABBBC2] text-center font-semibold">Discount: </p>
+                    <p class="text-white text-center font-semibold">---</p>
+                </div>
+
+                <!-- tax -->
+                <div class="flex justify-between">
+                    <p class="text-[#ABBBC2] text-center font-semibold">tax </p>
+                    <p class="text-white text-center font-semibold">---</p>
+                </div>
+
+                <!-- total -->
+                <div class="flex justify-between ">
+                    <p class="text-[#ABBBC2] text-center font-semibold">Total: </p>
+                    <p class="text-white text-center font-semibold underline">{{total|number:"0.0-0"}}</p>
+                </div>
+            </div>
+            <hr class="border border-gray-700 mt-3">
+            <!-- cancel and payment button -->
+            <div class="flex flex-wrap justify-center items-center relative gap-4 mt-3">
+                <button
+                    class="text-[#EA7C69] border-[#EA7C69] border py-4 px-8 rounded-xl font-semibold  hover:opacity-75 md:px-16"
+                    (click)="back()">Cancel</button>
+                <button class="text-white bg-[#EA7C69] py-4 px-8 rounded-xl font-semibold hover:opacity-75 md:px-16"
+                    (click)="confirmPayment()">Confirm
+                    Payment</button>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="flex flex-col flex-wrap gap-4 p-4">
+            <p class="!text-white">Email : <span class="text-gray-400 text-sm">Place Your Email Here</span></p>
+            <p class="!text-white">Web : <span class="text-gray-400 text-sm">Place Your Website Here</span></p>
+            <p class="!text-white">Address : <span class="text-gray-400 text-sm">Your Street Address 12/city
+                    Name</span></p>
+        </section>
+    </section>
+
+</main>

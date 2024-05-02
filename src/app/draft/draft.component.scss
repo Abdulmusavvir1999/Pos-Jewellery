@@ -1,0 +1,9 @@
+tr,
+th,
+td {
+    @apply border p-2 text-gray-300 border-gray-700;
+}
+
+th {
+    @apply text-white;
+}

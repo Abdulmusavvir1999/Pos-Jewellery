@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled {
+    background-color: rgb(142, 142, 142) !important;
+    border-radius: 1rem !important;
+}
+
+div.mat-mdc-select-panel {
+    padding: 0px !important;
+    border-radius: 4px;
+    background-color: gray !important;
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+    color: white !important;
+
+}
+
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after {
+    color: white !important;
+}
+
+.cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {
+    border-radius: 1rem !important;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-500 rounded-md;
+}

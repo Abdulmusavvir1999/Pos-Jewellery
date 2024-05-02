@@ -1,0 +1,108 @@
+<!-- <div class="flex flex-col flex-wrap w-32">
+    <p class="text-[0.6rem]">{{token}}</p>
+    <p>{{userId}}</p>
+    <p>{{photo}}</p>
+
+</div> -->
+
+<section class="bg-gray-800 text-gray-400">
+    <!-- logOut & Heading-->
+    <div class="p-4 bg-gray-700 flex justify-between items-center flex-wrap">
+        <h1 class="text-gray-500 font-bold !text-3xl mb-4 mt-2">Jewellery <span
+                class="px-4 text-white bg-gray-500 rounded-2xl">List</span>
+        </h1>
+
+        <button class="bg-black text-red-500 flex justify-center items-center px-3 py-1 rounded-xl hover:opacity-80"
+            (click)="logOut()">Log Out <img class="w-5 h-5 ml-1" src="../../assets/img/logout img.svg" alt=""></button>
+
+    </div>
+
+    <!-- part-1 -->
+    <div class="">
+        <div class="flex justify-between items-center p-4">
+            <h1 class=" font-bold  mt-4">PRODUCT</h1>
+            <h1 class=" text-gray-500 !text-sm font-semibold mt-4">Login > Product List</h1>
+        </div>
+        <div class="flex flex-wrap justify-between items-center gap-4 bg-gray-700 mx-4 p-4 rounded-xl">
+            <!-- Search -->
+            <div class="flex">
+                <img class="w-5 h-5 relative left-6 top-[0.45rem]" src="../../assets/img/search.logo.png" alt="">
+                <input [(ngModel)]="search" (input)="searchMethod($event)"
+                    class="pl-7 py-1 bg-transparent border rounded-xl" type="text" placeholder="Search Product">
+            </div>
+            <!-- filter -->
+            <div class="flex gap-4">
+                <div class="relative ">
+
+                    <mat-form-field>
+                        <mat-label>Select an option</mat-label>
+                        <mat-select class="italic" placeholder="Select Category" (valueChange)="filterProduct($event)"
+                            [(ngModel)]="categoryId">
+                            @for (category of categoryType; track $index) {
+                            <mat-option class="!flex italic !text-white"
+                                [value]="category.id">{{category.name}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                    @if (categoryId != -1) {
+                    <img class="absolute top-7 right-12 w-4 h-4 bg-gray-950 rounded cursor-pointer hover:bg-red-600"
+                        (click)="clearProject()" src="../../assets/img/close.svg" alt="">
+                    }
+
+                    <!-- <select (change)="filterProduct($event)" [(ngModel)]="categoryId"
+                        class=" p-1 bg-gray-300 rounded-xl text-gray-500 italic font-semibold transition-transform">
+                        @for (category of categoryType; track $index) {
+                        <option [value]="category.id">{{category.name}}</option>
+                        }
+                    </select> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col items-center bg-gray-700 m-4 rounded-xl p-4">
+        <div class="flex justify-between items-center flex-wrap w-full">
+            <h1 class="text-gray-500 font-bold text-xl mb-4 mt-2">Jewellery <span
+                    class="text-xl px-4 text-white bg-gray-500 rounded-2xl">List</span>
+            </h1>
+            <button (click)="pos()"
+                class="bg-black py-1 px-4 mb-2 rounded-2xl text-red-600 font-bold hover:opacity-80">POS</button>
+        </div>
+
+        <div class="w-full overflow-y-scroll overflow-x-scroll sm:max-h-[40rem]">
+            <table class="w-full border-none cursor-pointer min-w-[60rem] ">
+                <thead class="bg-gray-500">
+                    <tr>
+                        <th>Name</th>
+                        <th>MakingCharge</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                @for (item of productList; track $index) {
+                <tbody class="">
+                    <tr class="hover:bg-gray-100">
+                        <td class="font-semibold flex justify-start gap-4"><img class="w-10"
+                                src="../../assets/img/no-image.svg" alt="">{{item.name|titlecase}}
+                        </td>
+                        <td>{{item.makingCharge/100|percent}}</td>
+                        <td>{{item.quantity}}</td>
+                        <td>{{item.rate|number:'0.0-0'}}</td>
+                        <td>{{item.weight}}gm</td>
+                    </tr>
+                </tbody>
+                }
+            </table>
+        </div>
+        <p class="p-4 text-gray-400">Showing <span class="text-gray-500 font-semibold">26</span> of <span
+                class="text-gray-500 font-semibold">26</span> Results</p>
+    </div>
+
+    <br><br>
+
+    <div class="bg-gray-700 flex items-center justify-between p-4">
+        <p>2024 © Jewellery.</p>
+        <p>Design & Develop</p>
+    </div>
+</section>

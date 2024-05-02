@@ -1,0 +1,127 @@
+<div class="flex justify-center items-center relative bg-gray-800 shadow-lg shadow-gray-950">
+    <!-- back -->
+    <button (click)="back()" class="bg-black rounded-full absolute left-3 top-4"><img class="w-6 h-6"
+            src="../../assets/img/back-icon.svg" alt=""></button>
+    <!-- heading -->
+    <img class="w-[5rem]" src="../../assets/img/logo jewellery.png" alt="">
+    <p class="text-center text-[#EA7C69] font-semibold text-3xl italic">pos</p>
+</div>
+<main class="flex flex-col lg:flex-row bg-[#252836]">
+    <!-- todo Table -->
+    <section class="w-full lg:w-2/3 p-2">
+        <!-- Search -->
+        <div class="relative flex justify-center mb-4">
+            <img class="w-5 h-5 relative left-6 top-[0.45rem] " src="../../assets/img/search.logo.png" alt="">
+            <input [(ngModel)]="search" (input)="searchMethod($event)"
+                class="pl-6 w-[8.4rem] md:pl-7 py-1 rounded-xl outline-none bg-gray-600 font-semibold text-sm text-white focus:border-[#EA7C69] focus:border"
+                type="text" placeholder="Search Product">
+        </div>
+
+        <!-- filter -->
+        <div
+            class="flex text-nowrap overflow-x-scroll gap-8 max-w-[44rem] justify-between text-white font-semibold m-auto">
+            @for (item of categoryType; track $index) {
+            <button (click)="filterProduct(item.id)"
+                class="focus:underline focus:text-orange-400 hover:opacity-75 mb-3 italic ">{{item.name}}</button>
+            }
+        </div>
+
+        <div
+            class=" flex-wrap grid grid-col-1 sm:grid-cols-4 md:grid-cols-3 gap-12 h-[55rem] sm:h-[38rem] overflow-y-scroll">
+            @for (pos of posList; track $index) {
+            <div class=" bg-[#1F1D2B] text-white p-4 rounded-2xl italic cursor-pointer hover:opacity-80 mb-3">
+                <p class="font-semibold justify-start"><img class="w-20" src="../../assets/img/no-image.svg"
+                        alt="">{{pos.accessoryCategoryName|titlecase}}
+                </p>
+                <p class="pt-1">RS : {{pos.rate|number:"0.0-0"}}</p>
+                <p class="pt-1">{{pos.weight}} gm</p>
+                <p class="pt-1 text-[#ABBBC2]">{{pos.quantity}} - pcs Left</p>
+                <button (click)="addCart(pos)"
+                    class="bg-[#EA7C69] py-1 px-2 rounded-xl mt-2 font-semibold hover:text-black">Add to
+                    billing</button>
+            </div>
+            }
+        </div>
+    </section>
+
+    <!-- todo billing Side -->
+
+    <section class="w-full lg:w-1/3 bg-gray-900 p-4 ">
+
+        <div class="overflow-y-scroll h-[33rem] w-full">
+            <h1 class="text-white font-semibold">Cart Items</h1>
+            <div class="flex flex-col relative text-white rounded px-4">
+                <p class="font-semibold">Order# {{orderNumber}}</p>
+
+                <div class="flex justify-between p-4">
+                    <p>Index</p>
+                    <p>Items</p>
+                    <p>Qty</p>
+                    <p>Price</p>
+                    <p>Action</p>
+                </div>
+                <!-- normal cart items -->
+                @for (cart of carts; track $index) {
+                <div class="flex justify-between items-center p-4  shadow-xl shadow-black bg-[#1F1D2B] rounded-xl mb-3">
+                    <p>{{$index+1}}</p>
+                    <p class="flex flex-wrap items-center justify-start text-nowrap"><img class="w-10 mt-2"
+                            src="../../assets/img/no-image.svg" alt="">{{cart.accessoryCategoryName|titlecase}}
+                        <!-- Qty -->
+                    <div class="flex  gap-3 items-center">
+                        <button (click)="increaseQuantity($index)"
+                            class="text-[#EA7C69] py-[0.1rem] px-1 border border-[#EA7C69] rounded-md hover:text-white mb-4">+</button>
+                        <p class="">{{cart.quantity}}</p>
+                        <button (click)="decreaseQuantity($index)"
+                            class="text-[#EA7C69] py-[0.01rem] px-1 border border-[#EA7C69] rounded-md hover:text-white  mb-4">-</button>
+                    </div>
+                    <p>{{cart.rate|number:"0.0-0"}}</p>
+                    <p><button class="border border-[#EA7C69] rounded-md p-2 font-bold hover:opacity-75"
+                            (click)="removeCart($index)"><img src="../../assets/img/draft.svg" alt=""></button>
+                    </p>
+                </div>
+                }
+                <!-- draft Items -->
+                @for (draftItem of draftItems; track $index) {
+                <div class="flex justify-between items-center p-4  shadow-xl shadow-black bg-[#1F1D2B] rounded-xl mb-3">
+                    <p>{{$index+1}}</p>
+                    <p class="flex flex-wrap items-center justify-start text-nowrap"><img class="w-10 mt-2"
+                            src="../../assets/img/no-image.svg" alt="">{{draftItem.accessoryCategoryName|titlecase}}
+                        <!-- Qty -->
+                    <div class="flex  gap-3 items-center">
+                        <p class="">{{draftItem.quantity}}</p>
+                    </div>
+                    <p>{{draftItem.rate|number:"0.0-0"}}</p>
+                    <p><button class="border border-[#EA7C69] rounded-md p-2 font-bold hover:opacity-75"
+                            (click)="removeDraft($index)"><img src="../../assets/img/draft.svg" alt=""></button>
+                    </p>
+                </div>
+                }
+
+            </div>
+        </div>
+        <hr class="border border-gray-700 roundedful">
+        <!-- overall -->
+        <div>
+            <!-- Discount -->
+            <div class="flex justify-between">
+                <p class="text-[#ABBBC2] text-center font-semibold">Discount: </p>
+                <p class="text-white text-center font-semibold">---</p>
+            </div>
+
+            <!-- sub total -->
+            <div class="flex justify-between">
+                <p class="text-[#ABBBC2] text-center font-semibold">Sub total: </p>
+                <p class="text-white text-center font-semibold">{{amount()|number:"0.0-0"}}</p>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center items-center relative gap-4 z-10">
+            <button
+                class="text-[#EA7C69] border-[#EA7C69] border py-4 px-8 rounded-xl font-semibold  hover:opacity-75 md:px-16"
+                (click)="draft()">Draft</button>
+            <button class="text-white bg-[#EA7C69] py-4 px-8 rounded-xl font-semibold hover:opacity-75 md:px-16"
+                (click)="invoice()">Invoice</button>
+        </div>
+    </section>
+
+</main>
