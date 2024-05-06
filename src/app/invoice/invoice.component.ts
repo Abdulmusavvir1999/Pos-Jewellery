@@ -43,10 +43,6 @@ export class InvoiceComponent {
     this.total = amount
     this.invoiceItem = invoice
 
-    //generate Random Number
-    // let order = Math.floor(Math.random() * 90000) + 1000;
-    // this.orderNumber = order
-
     const draftItem = JSON.parse(localStorage.getItem('draftItem')!);
     this.customerName = draftItem?.customerName
     this.customerId = draftItem?.customerId

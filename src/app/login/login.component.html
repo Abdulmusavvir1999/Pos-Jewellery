@@ -35,17 +35,11 @@
                         <div class="group">
                             <label for="user" class="label">Username</label>
                             <input #username [(ngModel)]="userId" id="user" type="text" class="input" required>
-                            <!-- @if (username.value == "") {
-                            <p class="text-red-600 text-xs">Enter your password</p>
-                            } -->
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Password</label>
                             <input #password [(ngModel)]="Password" id="pass" type="password" class="input"
                                 data-type="password" required>
-                            <!-- @if (password.value == "") {
-                            <p class="text-red-600 text-xs">Enter your password</p>
-                            } -->
                         </div>
                         <p class="text-[0.8rem] underline text-gray-500  text-end mt-[-0.8rem]" for="tab-2"><a>Forget
                                 Password?</a></p>

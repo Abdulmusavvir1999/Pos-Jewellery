@@ -13,20 +13,4 @@ import { JewelleryListComponent } from './jewellery-list/jewellery-list.componen
 export class AppComponent {
   title = 'jewellery';
 
-
-
-  // isLoading: boolean = false
-  // router = inject(Router)
-
-  // ngOnInit(): void {
-  //   this.router.events.subscribe({
-  //     next: (event: any) => {
-  //       if (event instanceof NavigationStart)
-  //         this.isLoading = true
-  //       if (event instanceof NavigationEnd) {
-  //         this.isLoading = false
-  //       }
-  //     }
-  //   })
-  // }
 }

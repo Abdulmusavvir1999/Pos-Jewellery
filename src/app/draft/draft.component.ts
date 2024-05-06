@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { PosComponent } from '../pos/pos.component';
-import { CommonService } from '../Service/common.service';
-import { max } from 'rxjs';
 
 @Component({
   selector: 'app-draft',
@@ -24,9 +21,6 @@ export class DraftComponent {
 
 
   ngOnInit(): void {
-
-    // const amount = JSON.parse(localStorage.getItem("totalAmount")!)
-    // this.total = amount
     const draft = JSON.parse(localStorage.getItem("draftLocal")!)
     if (draft != undefined || draft != null) {
       this.draftAllItems.push(...draft)
@@ -49,8 +43,6 @@ export class DraftComponent {
 
   moveCart(draftItem: any): void {
     this.router.navigate(['pos/accessories/products'], { state: { drafts: draftItem } })
-    // this.router.navigateByUrl('pos/accessories/products')
-    // localStorage.setItem("draftLocal", JSON.stringify(this.draftAllItems));
   }
 
   //back
@@ -58,6 +50,5 @@ export class DraftComponent {
   back(): void {
     this.router.navigateByUrl('pos/accessories/products')
   }
-
 
 }

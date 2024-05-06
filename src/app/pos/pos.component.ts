@@ -44,17 +44,6 @@ export class PosComponent {
     //generate Random Number
     let order = Math.floor(Math.random() * 90000) + 1000;
     this.orderNumber = order
-
-    //getDraftItems
-    // this.service();
-    // const draftItem = JSON.parse(localStorage.getItem("draftLocal") || '[]');
-    // this.details = draftItem
-    // if (draftItem != undefined && draftItem != null) {
-    //   this.customerName = draftItem?.customerName
-    //   this.carts = draftItem?.cartItems
-    //   this.orderNumber = draftItem?.customerId
-    // }
-    // console.log(this.details);
   }
 
 
