@@ -24,12 +24,34 @@ export class InvoiceComponent {
   draftItems: any[] = []
   total: number = 0;
 
+  customerName: string = ""
+  customerId: number = 0
+  customerInvoiceName: string = ""
+  customerInvoiceId: number = 0
+
   ngOnInit(): void {
     const invoice = JSON.parse(localStorage.getItem("invoice")!)
+
+
+    const customer = JSON.parse(localStorage.getItem("customer")!)
+    this.customerInvoiceName = customer.name
+    this.customerInvoiceId = customer.id
+
     const amount = JSON.parse(localStorage.getItem("totalAmount")!)
-    this.draftItems = JSON.parse(localStorage.getItem("draftItems")!) || [];
+
+
     this.total = amount
     this.invoiceItem = invoice
+
+    //generate Random Number
+    // let order = Math.floor(Math.random() * 90000) + 1000;
+    // this.orderNumber = order
+
+    const draftItem = JSON.parse(localStorage.getItem('draftItem')!);
+    this.customerName = draftItem?.customerName
+    this.customerId = draftItem?.customerId
+
+
   }
   //removeDraft
 
@@ -43,20 +65,28 @@ export class InvoiceComponent {
   //confirmPayment
 
   confirmPayment(): void {
-    this.router.navigateByUrl('products/pos')
-    this.matSnackBar.open("Your order is placed", 'Thank you', {
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      duration: 3000
+    if (this.invoiceItem.length === 0) {
+      this.matSnackBar.open("Your cart is empty. Please add items before proceeding.", 'Close', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000
+      });
+    } else {
+      localStorage.removeItem("invoice");
+      localStorage.removeItem('draftItem');
+      this.router.navigateByUrl('products/pos');
+      this.matSnackBar.open("Your order is placed", 'Thank you', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000
+      });
     }
-    )
   }
+
   //back
 
   back(): void {
     this.router.navigateByUrl('pos/accessories/products');
-    localStorage.removeItem("draftItems");
-    localStorage.removeItem("invoice");
   }
   addInvoice(): void {
     const invoice = {
@@ -120,7 +150,6 @@ export class InvoiceComponent {
     this.commonService.pos({ data: this.commonService.encryptData(invoice) }).subscribe({
       next: (res: any) => {
         const response = this.commonService.decryptData({ data: res })
-        console.log(response.totalAmount);
       }
     });
   }

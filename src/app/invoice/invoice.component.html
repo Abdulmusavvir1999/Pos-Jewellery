@@ -7,6 +7,7 @@
         <h1>V</h1>
         <h1>N</h1>
         <h1>I</h1>
+        <img class="w-14 rotate-[145deg]" src="../../assets/img/invoice-gray.svg" alt="">
     </aside>
     <section class="w-screen">
         <!-- back -->
@@ -22,7 +23,8 @@
                 <!-- detail -->
                 <div class="p-4">
                     <h1>Invoice To:</h1>
-                    <p class="text-2xl !text-gray-300 ">Enter Your Name</p>
+                    <p class="text-2xl !text-gray-200 underline font-semibold">{{customerName|uppercase}}
+                        {{customerInvoiceName|uppercase}}</p>
                     <p>123 Your Street Address,City,Country NY, <br> Lorem ipsum dolor sit and, adipisicing elit.
                         <br> Soluta deleniti eum laboriosam!
                     </p>
@@ -40,7 +42,7 @@
             <!-- second one -->
             <div class="">
                 <div class="bg-gray-700 p-4">
-                    <h1>COMPANY NAME</h1>
+                    <h1>Jewellery Shop</h1>
                     <p class="!text-gray-400">Tagline goes Here</p>
                 </div>
 
@@ -89,7 +91,7 @@
 
         <!-- table -->
         <section class=" bg-gray-900 border-[0.2rem] border-gray-600 p-4 relative left-[-5%]">
-            <h1 class="text-white">Order# 123</h1>
+            <h1 class="text-white">Order# {{customerId}} {{customerInvoiceId}}</h1>
             <div class="w-full overflow-x-scroll sm:max-h-[40rem]">
                 <table class="w-full">
                     <thead class="text-white bg-gray-800">
@@ -111,18 +113,6 @@
 
                     </tbody>
                     }
-                    @for (draftItem of draftItems; track $index) {
-                    <tbody>
-                        <tr class="text-center text-white">
-                            <td>{{$index+1}}</td>
-                            <td>{{draftItem.name}}</td>
-                            <td>{{draftItem.quantity}}</td>
-                            <td>{{draftItem.rate}}</td>
-                        </tr>
-
-                    </tbody>
-                    }
-
                 </table>
             </div>
             <!-- total -->

@@ -53,6 +53,10 @@ export class CommonService {
     return this.http.post('invoice/add', req)
   }
 
+  draftToCartDetails() {
+    return history.state
+  }
+
   constructor() { }
 
 }

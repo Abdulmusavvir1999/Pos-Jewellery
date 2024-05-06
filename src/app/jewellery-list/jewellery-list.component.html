@@ -28,7 +28,8 @@
             <div class="flex">
                 <img class="w-5 h-5 relative left-6 top-[0.45rem]" src="../../assets/img/search.logo.png" alt="">
                 <input [(ngModel)]="search" (input)="searchMethod($event)"
-                    class="pl-7 py-1 bg-transparent border rounded-xl" type="text" placeholder="Search Product">
+                    class="pl-7 py-1 bg-transparent border rounded-xl text-white" type="text"
+                    placeholder="Search Product">
             </div>
             <!-- filter -->
             <div class="flex gap-4">
@@ -48,13 +49,6 @@
                     <img class="absolute top-7 right-12 w-4 h-4 bg-gray-950 rounded cursor-pointer hover:bg-red-600"
                         (click)="clearProject()" src="../../assets/img/close.svg" alt="">
                     }
-
-                    <!-- <select (change)="filterProduct($event)" [(ngModel)]="categoryId"
-                        class=" p-1 bg-gray-300 rounded-xl text-gray-500 italic font-semibold transition-transform">
-                        @for (category of categoryType; track $index) {
-                        <option [value]="category.id">{{category.name}}</option>
-                        }
-                    </select> -->
                 </div>
             </div>
         </div>

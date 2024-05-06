@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { JewelleryListComponent } from './jewellery-list/jewellery-list.component';
 
@@ -12,4 +12,21 @@ import { JewelleryListComponent } from './jewellery-list/jewellery-list.componen
 })
 export class AppComponent {
   title = 'jewellery';
+
+
+
+  // isLoading: boolean = false
+  // router = inject(Router)
+
+  // ngOnInit(): void {
+  //   this.router.events.subscribe({
+  //     next: (event: any) => {
+  //       if (event instanceof NavigationStart)
+  //         this.isLoading = true
+  //       if (event instanceof NavigationEnd) {
+  //         this.isLoading = false
+  //       }
+  //     }
+  //   })
+  // }
 }

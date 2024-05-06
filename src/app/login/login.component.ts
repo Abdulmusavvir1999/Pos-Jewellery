@@ -37,7 +37,7 @@ export class LoginComponent {
       this.EDService.login({ data: this.EDService.encryptData(user) }).subscribe({
         next: (res: any) => {
           const response = this.EDService.decryptData({ data: res })
-          console.log(response);
+
 
           localStorage.setItem("token", response.token),
             localStorage.setItem("userId", response.employeeId),

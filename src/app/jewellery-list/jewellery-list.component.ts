@@ -108,7 +108,6 @@ export class JewelleryListComponent {
 
   searchMethod(event: any): void {
     this.search = (event.target as HTMLInputElement).value
-    console.log(this.search);
     this.list()
   }
 

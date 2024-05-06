@@ -3,8 +3,10 @@ import { Component, inject } from '@angular/core';
 import { CommonService } from '../Service/common.service';
 import { FormsModule } from '@angular/forms';
 import { routes } from '../app.routes';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { DraftComponent } from '../draft/draft.component';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,18 +17,24 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   styleUrl: './pos.component.scss'
 })
 export class PosComponent {
+
   //inject
   commonService = inject(CommonService)
   posList: any;
   search: string | undefined = "";
   router = inject(Router)
   matSnackBar = inject(MatSnackBar)
+  activate = inject(ActivatedRoute)
+  detail: any;
+
 
 
   //create property
   orderNumber: Number | null = null
   totalAmount: number = 0
   draftItems: any[] = []
+  getDraftItems: any[] = []
+  details: any;
 
   ngOnInit(): void {
     this.pos()
@@ -37,12 +45,29 @@ export class PosComponent {
     let order = Math.floor(Math.random() * 90000) + 1000;
     this.orderNumber = order
 
-    //draftItems
-    const draftItem = JSON.parse(localStorage.getItem("draftItems") || '[]');
-    console.log(draftItem);
-
-    this.draftItems = draftItem
+    //getDraftItems
+    // this.service();
+    // const draftItem = JSON.parse(localStorage.getItem("draftLocal") || '[]');
+    // this.details = draftItem
+    // if (draftItem != undefined && draftItem != null) {
+    //   this.customerName = draftItem?.customerName
+    //   this.carts = draftItem?.cartItems
+    //   this.orderNumber = draftItem?.customerId
+    // }
+    // console.log(this.details);
   }
+
+
+  service(): void {
+    this.details = history.state
+    if (this.details != undefined && this.details != null) {
+      this.customerName = this.details.drafts?.customerName
+      this.carts = this.details.drafts?.cartItems
+      this.orderNumber = this.details.drafts?.customerId
+    }
+  }
+
+
 
   pos(): void {
     const pos = {
@@ -63,7 +88,6 @@ export class PosComponent {
   //search
   searchMethod(event: any): void {
     this.search = (event.target as HTMLInputElement).value
-    console.log(this.search);
     this.pos()
   }
 
@@ -95,7 +119,7 @@ export class PosComponent {
 
   filterProduct(categories: string) {
     this.categoryId = categories
-    this.pos()
+    // this.pos()
   }
 
   //add to cart
@@ -105,38 +129,44 @@ export class PosComponent {
 
   amount() {
     localStorage.setItem("totalAmount", JSON.stringify(this.totalAmount));
-    return this.carts.reduce((acc, item) => {
-      return this.totalAmount = acc + item.rate * item.quantity
-    }, 0)
+    if (this.carts != undefined) {
+      return this.carts.reduce((acc, item) => {
+        return this.totalAmount = acc + item.rate * item.quantity
+      }, 0)
+
+    }
   }
 
   addCart(pos: any): void {
 
-    const ItemIndex = this.carts.findIndex(item => item === pos);
+    if (this.carts != undefined) {
+      let ItemIndex = this.carts.findIndex(item => item === pos);
 
-    if (ItemIndex !== -1) {
-      if (this.carts[ItemIndex].quantity < 10) {
-        this.carts[ItemIndex].quantity++;
+
+      if (ItemIndex !== -1) {
+        if (this.carts[ItemIndex].quantity < 10) {
+          this.carts[ItemIndex].quantity++;
+        } else {
+          this.matSnackBar.open('Maximum quantity reached for this item.', 'Cart is full', {
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            duration: 3000
+          })
+        }
       } else {
-        this.matSnackBar.open('Maximum quantity reached for this item.', 'Cart is full', {
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          duration: 3000
-        })
+        if (this.carts.length < 10) {
+          pos.quantity;
+          this.carts.push(pos);
+        } else {
+          this.matSnackBar.open('Maximum items reached in the cart.', 'Cart is full', {
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+            duration: 3000
+          })
+        }
       }
-    } else {
-      if (this.carts.length < 10) {
-        pos.quantity;
-        this.carts.push(pos);
-      } else {
-        this.matSnackBar.open('Maximum items reached in the cart.', 'Cart is full', {
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-          duration: 3000
-        })
-      }
+
     }
-
 
   }
 
@@ -170,31 +200,73 @@ export class PosComponent {
     this.carts.splice(index, 1);
     localStorage.setItem("CartsLocal", JSON.stringify(this.carts));
   }
+  newCart(index: any): any {
+    if (this.carts != undefined) {
+      this.carts.splice(index);
+
+    }
+    this.customerName = ''
+    this.carts = []
+    this.orderNumber = Math.floor(Math.random() * 90000) + 1000;
+    this.router.navigateByUrl('pos/accessories/products')
+  }
 
 
 
   //draft
+
+  customerName: any;
+  qty: any;
+  customerId: number | undefined;
+
   draft(): void {
-    const localGet = JSON.parse(localStorage.getItem("CartsLocal") || '[]');
-
-    const pushItems = [...localGet, ...this.carts];
-
-    localStorage.setItem("CartsLocal", JSON.stringify(pushItems));
-    if (this.carts.length > 0) {
-      this.router.navigateByUrl('pos/accessories/draft')
-      this.matSnackBar.open("successfully added to draft.", 'success', {
+    if (!this.customerName) {
+      this.matSnackBar.open("Please enter customer name.", 'Required', {
         horizontalPosition: 'center',
         verticalPosition: 'top',
         duration: 3000
-      })
-    } else {
-      this.router.navigateByUrl('pos/accessories/draft')
-      this.matSnackBar.open("No items in the cart.", 'No items added', {
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        duration: 3000
-      })
+      });
+      return;
     }
+
+    if (this.carts.length === 0) {
+      this.matSnackBar.open("Please add items to the cart.", 'No items', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000
+      });
+      return;
+    }
+
+    let orders = JSON.parse(localStorage.getItem('draftLocal') || '[]');
+
+    // Ensure orders is an array
+    if (!Array.isArray(orders)) {
+      orders = [];
+    }
+
+    const order = {
+      customerName: this.customerName,
+      cartItems: this.carts,
+      customerId: this.orderNumber
+    };
+
+    orders.push(order);
+
+    localStorage.setItem('draftLocal', JSON.stringify(orders));
+
+    this.router.navigateByUrl('pos/accessories/draft');
+
+    this.matSnackBar.open("Successfully added to draft.", 'success', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 3000
+    });
+  }
+
+
+  draftPage(): void {
+    this.router.navigateByUrl('pos/accessories/draft');
   }
 
   removeDraft(index: number): void {
@@ -268,21 +340,43 @@ export class PosComponent {
         const response = this.commonService.decryptData({ data: res })
       }
     });
-
   }
 
   invoice(): void {
-    localStorage.setItem("invoice", JSON.stringify(this.carts));
-    if (this.carts.length > 0) {
-      this.router.navigateByUrl('pos/invoice/add');
-      this.addInvoice();
-    } else {
-      this.matSnackBar.open("No items in the cart. Cannot proceed to invoice.", 'No items', {
+    if (!this.customerName) {
+      this.matSnackBar.open("Please enter customer name.", 'Required', {
         horizontalPosition: 'center',
         verticalPosition: 'top',
         duration: 3000
-      })
+      });
+      return;
     }
+
+
+
+    if (this.carts.length > 0) {
+      localStorage.setItem("invoice", JSON.stringify(this.carts))
+
+      let details = JSON.parse(localStorage.getItem('customerDetail') || '[]');
+
+      const detail = {
+        name: this.customerName,
+        id: this.orderNumber
+      }
+
+      details = detail;
+
+      localStorage.setItem("customer", JSON.stringify(details))
+      this.router.navigateByUrl('pos/invoice/add');
+      this.addInvoice();
+    } else {
+    }
+    this.matSnackBar.open("No items in the cart. Cannot proceed to invoice.", 'No items', {
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      duration: 3000
+    })
   }
+
 
 }

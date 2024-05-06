@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { PosComponent } from '../pos/pos.component';
+import { CommonService } from '../Service/common.service';
+import { max } from 'rxjs';
 
 @Component({
   selector: 'app-draft',
@@ -12,45 +14,43 @@ import { PosComponent } from '../pos/pos.component';
 })
 export class DraftComponent {
 
-  //inject
-  router = inject(Router)
 
+  router = inject(Router)
 
   //create property
   draftItems: any[] = []
   draftAllItems: any[] = []
+  total: number = 0;
 
-  // ngOnInit(): void {
-  //   const draft = JSON.parse(localStorage.getItem("CartsLocal")!)
-  //   console.log(draft);
-  //   this.draftItems = draft
-  // }
 
   ngOnInit(): void {
-    const drafts: any[] = JSON.parse(localStorage.getItem("CartsLocal")!) || [];
-    this.draftItems.push(...drafts);
+
+    // const amount = JSON.parse(localStorage.getItem("totalAmount")!)
+    // this.total = amount
+    const draft = JSON.parse(localStorage.getItem("draftLocal")!)
+    if (draft != undefined || draft != null) {
+      this.draftAllItems.push(...draft)
+
+    }
   }
-
-
-
 
   //removeDraft
 
-  removeDraft(index: any): any {
-    this.draftItems.splice(index);
-    localStorage.setItem("CartsLocal", JSON.stringify(this.draftItems));
+  removeDraft(index: number): void {
+    this.draftAllItems.splice(index, 1)
+    localStorage.setItem("draftLocal", JSON.stringify(this.draftAllItems));
   }
-  removeItems(index: any): any {
-    this.draftItems.splice(index, 1);
-    localStorage.setItem("CartsLocal", JSON.stringify(this.draftItems));
+  removeDraft1(index: any): any {
+    this.draftAllItems.splice(index);
+    localStorage.setItem("draftLocal", JSON.stringify(this.draftAllItems));
   }
 
-  //moveInvoice
+  // moveCart
 
-  moveInvoice(): void {
+  moveCart(draftItem: any): void {
+    this.router.navigate(['pos/accessories/products'], { state: { drafts: draftItem } })
     // this.router.navigateByUrl('pos/accessories/products')
-    this.router.navigateByUrl('pos/invoice/add')
-    localStorage.setItem("draftItems", JSON.stringify(this.draftItems));
+    // localStorage.setItem("draftLocal", JSON.stringify(this.draftAllItems));
   }
 
   //back
