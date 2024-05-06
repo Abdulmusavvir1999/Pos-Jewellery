@@ -57,6 +57,13 @@ export class PosComponent {
       this.carts = this.details.drafts?.cartItems
       this.orderNumber = this.details.drafts?.customerId
     }
+    if (this.details === undefined) {
+      this.matSnackBar.open("Please enter customer name.", 'Required', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000
+      });
+    }
   }
 
 
