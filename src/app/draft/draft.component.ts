@@ -24,6 +24,8 @@ export class DraftComponent {
     const draft = JSON.parse(localStorage.getItem("draftLocal")!)
     if (draft != undefined || draft != null) {
       this.draftAllItems.push(...draft)
+      console.log(this.draftAllItems);
+
 
     }
   }
