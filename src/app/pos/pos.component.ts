@@ -121,6 +121,11 @@ export class PosComponent {
     this.pos()
   }
 
+  clearProject(): void {
+    this.categoryId = -1;
+    this.pos()
+  }
+
   //add to cart
   carts: any[] = []
 

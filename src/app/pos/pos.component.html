@@ -23,7 +23,11 @@
             class="flex text-nowrap overflow-x-scroll gap-8 max-w-[44rem] justify-between text-white font-semibold m-auto">
             @for (item of categoryType; track $index) {
             <button (click)="filterProduct(item.id)"
-                class="focus:underline focus:text-orange-400 hover:opacity-75 mb-3 italic ">{{item.name}}</button>
+                class="relative focus:underline focus:text-orange-400 hover:opacity-75 mb-3 italic ml-4">{{item.name}}</button>
+            }
+            @if (categoryType != -1) {
+            <img class="absolute w-4 h-4 bg-gray-950 rounded cursor-pointer hover:bg-red-600" (click)="clearProject()"
+                src="../../assets/img/close.svg" alt="">
             }
         </div>
 
