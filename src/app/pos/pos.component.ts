@@ -118,7 +118,7 @@ export class PosComponent {
 
   filterProduct(categories: string) {
     this.categoryId = categories
-    // this.pos()
+    this.pos()
   }
 
   //add to cart
