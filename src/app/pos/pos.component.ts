@@ -369,12 +369,12 @@ export class PosComponent {
       this.router.navigateByUrl('pos/invoice/add');
       this.addInvoice();
     } else {
+      this.matSnackBar.open("No items in the cart. Cannot proceed to invoice.", 'No items', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000
+      })
     }
-    this.matSnackBar.open("No items in the cart. Cannot proceed to invoice.", 'No items', {
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      duration: 3000
-    })
   }
 
 
