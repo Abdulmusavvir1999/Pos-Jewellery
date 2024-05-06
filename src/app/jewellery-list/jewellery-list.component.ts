@@ -117,7 +117,7 @@ export class JewelleryListComponent {
   }
 
   logOut() {
-    const token = localStorage.clear()
+    localStorage.removeItem("token")
     this.router.navigateByUrl('')
     //snack bar message
 

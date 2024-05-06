@@ -44,12 +44,15 @@ export class PosComponent {
     //generate Random Number
     let order = Math.floor(Math.random() * 90000) + 1000;
     this.orderNumber = order
+
+
   }
 
 
   service(): void {
     this.details = history.state
     if (this.details != undefined && this.details != null) {
+      this.details = history.state
       this.customerName = this.details.drafts?.customerName
       this.carts = this.details.drafts?.cartItems
       this.orderNumber = this.details.drafts?.customerId
