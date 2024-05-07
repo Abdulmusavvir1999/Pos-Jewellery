@@ -11,9 +11,8 @@
     <!-- todo Table -->
     <section class="w-full lg:w-2/3 p-2">
         <!-- Search -->
-        <div class="relative flex justify-center mb-4">
-            <img class=" w-5 h-5 relative left-6 top-[0.45rem] rounded-xl" src="../../assets/img/search.logo.svg"
-                alt="">
+        <div class="relative flex justify-center mb-4 mt-3">
+            <img class=" w-6 h-6 relative  left-7 top-[0.45rem]" src="../../assets/img/search.logo.svg" alt="">
             <input [(ngModel)]="search" (input)="searchMethod($event)"
                 class="w-1/2 p-2 pl-[5%] flex justify-center items-center rounded-xl outline-none bg-gray-600 font-semibold text-sm text-white focus:border-[#EA7C69] focus:border"
                 type="text" placeholder="Search Product">
@@ -25,9 +24,11 @@
             @for (item of categoryType; track $index) {
             <button (click)="filterProduct(item.id)"
                 class="relative focus:underline focus:text-orange-400 hover:opacity-75 mb-3 italic ml-4">{{item.name}}</button>
-            }
-            <img class="cancel-img absolute top-[8.9rem] left-2 w-4 h-4 bg-gray-950 rounded cursor-pointer hover:bg-red-600"
+            @if (item.id != -1) {
+            <img class="cancel-img absolute top-[9.65rem] left-1 w-4 h-4 bg-gray-950 rounded cursor-pointer hover:bg-red-600"
                 (click)="clearProject()" src="../../assets/img/close.svg" alt="">
+            }
+            }
 
         </div>
 
@@ -92,18 +93,12 @@
                     <p>Action</p>
                 </div>
 
-
-
-
                 <!-- normal cart items -->
-
-
-
 
                 @for (cart of carts; track $index) {
                 <div
                     class="flex justify-between items-center gap-2 pt-7 px-5  shadow-xl shadow-black bg-[#1F1D2B] rounded-xl mb-3 min-w-[20rem] overflow-x-scroll">
-                    <p class="flex flex-wrap items-center justify-start text-nowrap">
+                    <p class="flex flex-wrap items-center justify-start text-nowrap pt-2">
                         {{cart.accessoryCategoryName|titlecase}}
 
                     <div class="flex gap-1 items-center md:gap-3">
@@ -114,8 +109,8 @@
                             class="text-[#EA7C69]  border border-[#EA7C69] rounded-md text-2xl py1 px-2 hover:text-white">+</button>
                     </div>
 
-                    <p>{{cart.rate|number:"0.0-0"}}</p>
-                    <p><button class="border border-[#EA7C69] rounded-md p-2 font-bold hover:opacity-75"
+                    <p class="pt-2">{{cart.rate|number:"0.0-0"}}</p>
+                    <p class="pt-2"><button class="border border-[#EA7C69] rounded-md p-2 font-bold hover:opacity-75"
                             (click)="removeCart($index)"><img src="../../assets/img/draft.svg" alt=""></button>
                     </p>
                 </div>
