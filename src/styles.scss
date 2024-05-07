@@ -14,14 +14,15 @@ body {
 }
 
 .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled {
-    background-color: rgb(142, 142, 142) !important;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
     border-radius: 1rem !important;
+
 }
 
 div.mat-mdc-select-panel {
     padding: 0px !important;
     border-radius: 4px;
-    background-color: gray !important;
+    background-color: rgb(45, 48, 58) !important;
 }
 
 .mat-mdc-option .mdc-list-item__primary-text {

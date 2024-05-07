@@ -4,7 +4,7 @@ aside h1 {
 
 section {
     p {
-        @apply text-gray-400 text-[1rem];
+        @apply text-gray-400 text-[1rem] 2xl:text-3xl;
     }
 
     h1 {
@@ -20,4 +20,8 @@ td {
 
 th {
     @apply text-white;
+}
+
+.table {
+    @apply 2xl:left-10
 }

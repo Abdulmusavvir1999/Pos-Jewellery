@@ -2,11 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { CommonService } from '../Service/common.service';
 import { FormsModule } from '@angular/forms';
-import { routes } from '../app.routes';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { DraftComponent } from '../draft/draft.component';
-import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -44,26 +42,19 @@ export class PosComponent {
     //generate Random Number
     let order = Math.floor(Math.random() * 90000) + 1000;
     this.orderNumber = order
-
-
   }
 
 
   service(): void {
     this.details = history.state
+    console.log(this.details);
+
     if (this.details != undefined && this.details != null) {
-      this.details = history.state
       this.customerName = this.details.drafts?.customerName
       this.carts = this.details.drafts?.cartItems
       this.orderNumber = this.details.drafts?.customerId
     }
-    if (this.details === undefined) {
-      this.matSnackBar.open("Please enter customer name.", 'Required', {
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        duration: 3000
-      });
-    }
+
   }
 
 
@@ -158,7 +149,7 @@ export class PosComponent {
           })
         }
       } else {
-        if (this.carts.length < 10) {
+        if (this.carts.length < Infinity) {
           pos.quantity;
           this.carts.push(pos);
         } else {
@@ -169,9 +160,7 @@ export class PosComponent {
           })
         }
       }
-
     }
-
   }
 
 
@@ -202,7 +191,7 @@ export class PosComponent {
 
   removeCart(index: number): void {
     this.carts.splice(index, 1);
-    localStorage.setItem("CartsLocal", JSON.stringify(this.carts));
+    this.pos()
   }
   newCart(index: any): any {
     if (this.carts != undefined) {
