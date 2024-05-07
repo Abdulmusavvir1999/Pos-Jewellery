@@ -19,24 +19,3 @@ th {
 td {
     @apply text-white p-2 border text-center italic;
 }
-
-//media
-@media (min-width:1900px) {
-    main {
-
-        .table {
-            @apply left-12;
-        }
-
-        tr,
-        th,
-        td {
-            @apply border p-2 text-gray-300 border-gray-700;
-        }
-
-        th {
-            @apply text-white;
-        }
-
-    }
-}

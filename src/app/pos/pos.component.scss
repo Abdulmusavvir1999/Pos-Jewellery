@@ -26,24 +26,5 @@ td {
         label {
             @apply 2xl:my-10;
         }
-
-        .search-img {
-            @apply 2xl:w-16 2xl:h-16 2xl:left-16 2xl:top-9;
-        }
-
-        .cancel-img {
-            @apply 2xl:w-14 2xl:h-14 2xl:left-5 2xl:top-52;
-
-        }
-
-        .back-btn {
-            @apply 2xl:w-14 2xl:h-14 2xl:top-[-30%];
-
-            img {
-                @apply 2xl:w-14 2xl:h-14 2xl:left-5 2xl:top-52;
-
-            }
-
-        }
     }
 }
