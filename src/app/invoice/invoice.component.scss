@@ -12,6 +12,14 @@ section {
     }
 }
 
+th {
+    @apply p-2 border text-center italic;
+}
+
+td {
+    @apply text-white p-2 border text-center italic;
+}
+
 //media
 @media (min-width:1900px) {
     main {
