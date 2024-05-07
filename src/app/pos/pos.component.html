@@ -13,7 +13,7 @@
         <!-- Search -->
         <div class="relative flex justify-center mb-4">
             <img class="search-img w-5 h-5 relative left-6 top-[0.45rem] rounded-xl"
-                src="../../assets/img/search.logo.png" alt="">
+                src="../../assets/img/search.logo.svg" alt="">
             <input [(ngModel)]="search" (input)="searchMethod($event)"
                 class="w-1/2 p-2 pl-[5%] flex justify-center items-center rounded-xl outline-none bg-gray-600 font-semibold text-sm text-white focus:border-[#EA7C69] focus:border"
                 type="text" placeholder="Search Product">
@@ -34,14 +34,14 @@
 
         <!-- table -->
 
-        <div class=" flex-wrap grid grid-col-1 sm:grid-cols-4 md:grid-cols-3 gap-12 h-[55rem] sm:h-[38rem] lg:h-screen xl:h-screen overflow-y-scroll
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-12 h-[55rem] sm:h-[38rem] lg:h-screen xl:h-screen overflow-y-scroll
             ">
             @for (pos of posList; track $index) {
             <div (click)="addCart(pos)"
                 class="sm:flex-col bg-[#1F1D2B] text-white rounded-2xl italic cursor-pointer hover:opacity-80 mb-3 mt-3">
                 <div>
 
-                    <img class="!w-[70%] sm:!w-[80%] m-auto" src="../../assets/img/no-image.svg" alt="">
+                    <img class=" m-auto" src="../../assets/img/no-image.svg" alt="">
                 </div>
                 <!-- Description -->
                 <div class="p-4">
