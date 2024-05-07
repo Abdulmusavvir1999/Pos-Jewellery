@@ -87,11 +87,20 @@
 
             </table>
         </div>
-        <mat-paginator #pagination
-            class="!flex !justify-center !items-center !flex-wrap !text-nowrap w-full !bg-transparent !text-white italic !font-semibold"
-            [length]="productList.length" showFirstLastButtons="button" [pageSize]="10" [pageSizeOptions]="[3,5,10,20]"
-            (page)="pageNation($event)" aria-label="Select page">
-        </mat-paginator>
+        <div class="sm:hidden min-w-full">
+            <mat-paginator
+                class="!sm:hidden !flex !justify-center !items-center !flex-wrap !text-nowrap w-full !text-center !bg-gray-500 !text-white italic !font-semibold"
+                [length]="productList.length" [pageSize]="10" (page)="pageNation($event)">
+            </mat-paginator>
+
+        </div>
+        <div class="hidden sm:block min-w-full">
+            <mat-paginator
+                class="!flex !justify-center !items-center !flex-wrap !text-nowrap w-full !text-center !bg-gray-500 !text-white italic !font-semibold"
+                [length]="productList.length" showFirstLastButtons="button" [pageSize]="10"
+                [pageSizeOptions]="[3,5,10,20]" (page)="pageNation($event)" aria-label="Select page">
+            </mat-paginator>
+        </div>
 
 
 
