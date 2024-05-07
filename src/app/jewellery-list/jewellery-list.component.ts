@@ -6,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -43,9 +44,6 @@ export class JewelleryListComponent {
 
   dialog = inject(MatDialog)
 
-
-
-
   ngOnInit(): void {
     const token = localStorage.getItem('token')
     const userId = localStorage.getItem('userId')
@@ -55,6 +53,23 @@ export class JewelleryListComponent {
     this.photo = photo
     this.list()
     this.categories()
+    // this.pageNation({
+    //   pageIndex: 10, pageSize: 10,
+    //   length: 10
+    // });
+  }
+
+
+  public pageSlice = this.productList.slice(0, 10);
+
+
+  pageNation(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.productList.length) {
+      endIndex = this.productList.length
+    }
+    this.pageSlice = this.productList.slice(startIndex, endIndex)
   }
 
   list(): void {
@@ -70,10 +85,9 @@ export class JewelleryListComponent {
       next: (res: any) => {
         const response = this.commonService.decryptData({ data: res })
         this.productList = response
+        this.pageSlice = response
       }
     });
-
-
   }
 
   // categories

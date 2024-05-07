@@ -60,7 +60,7 @@
 
         <!-- table -->
 
-        <div class="w-full overflow-x-scroll overflow-y-auto max-h-[40rem] md:overflow-x-auto 2xl:max-h-full">
+        <div class="w-full overflow-x-scroll 2xl:max-h-full">
             <table class="w-full border-none cursor-pointer min-w-[60rem] ">
                 <thead class="bg-gray-500">
                     <tr>
@@ -71,8 +71,8 @@
                         <th>Weight</th>
                     </tr>
                 </thead>
-                @for (item of productList; track $index) {
                 <tbody class="">
+                    @for (item of pageSlice; track $index){
                     <tr class="hover:bg-gray-600">
                         <td class="font-semibold flex justify-start gap-4"><img class="w-10"
                                 src="../../assets/img/no-image.svg" alt="">{{item.name|titlecase}}
@@ -82,12 +82,21 @@
                         <td>{{item.rate|number:'0.0-0'}}</td>
                         <td>{{item.weight}}gm</td>
                     </tr>
+                    }
                 </tbody>
-                }
+
             </table>
         </div>
-        <p class="p-4 text-gray-100">Showing <span class="text-gray-100 font-semibold">26</span> of <span
-                class="text-gray-100 font-semibold">26</span> Results</p>
+        <mat-paginator #pagination class="w-full !bg-gray-500 !text-white italic !font-semibold"
+            [length]="productList.length" showFirstLastButtons="button" [pageSize]="10" [pageSizeOptions]="[3,5,10,20]"
+            (page)="pageNation($event)" aria-label="Select page">
+        </mat-paginator>
+
+
+
+        <p class="p-4 text-gray-100">Showing <span class="text-gray-100 font-semibold">{{pageSlice.length}}</span> of
+            <span class="text-gray-100 font-semibold">26</span> Results
+        </p>
     </div>
 
     <br><br>

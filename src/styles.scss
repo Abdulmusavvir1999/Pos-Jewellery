@@ -48,5 +48,32 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-gray-500 rounded-md;
+    @apply bg-gray-600 rounded-md;
+}
+
+//pagination
+
+mat-form-field {
+    div {
+        color: white !important;
+        border: none !important;
+    }
+}
+
+.mat-mdc-paginator-range-actions {
+
+    button {
+        span {
+
+            color: white !important;
+        }
+
+        display: flex !important;
+        border-color: white !important;
+    }
+}
+
+.mat-mdc-button-touch-target {
+    // background: rgba(255, 255, 255, 0.11);
+
 }

@@ -1,4 +1,4 @@
-<main class="bg-[#252836] p-4 h-full md:h-full">
+<main class="bg-[#252836] p-4 min-h-full md:h-full">
     <div>
         <button class="text-white absolute flex bg-black py-1 px-2 rounded-lg hover:opacity-50" (click)="back()"><img
                 class="w-6 h-6" src="../../assets/img/back-icon.svg" alt=""></button>
@@ -7,7 +7,7 @@
     <hr>
 
     <section class=" bg-gray-900 border-[0.2rem] border-gray-600 p-4">
-        <div class="w-full overflow-x-scroll sm:max-h-[40rem]">
+        <div class="w-full overflow-x-scroll">
 
 
 
@@ -47,11 +47,11 @@
                 </tbody>
                 }}
 
-                <button
-                    class="border border-[#EA7C69] text-white text-nowrap py-3 px-8 md:px-12 mt-2 ml-2 rounded-xl font-semibold hover:opacity-75"
-                    (click)="removeDraft1($event)">Remove All</button>
             </table>
         </div>
+        <button
+            class="border border-[#EA7C69] text-white text-nowrap py-3 px-8 md:px-12 mt-2 ml-2 rounded-xl font-semibold hover:opacity-75"
+            (click)="removeDraft1($event)">Remove All</button>
     </section>
 
 
