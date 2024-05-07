@@ -18,17 +18,13 @@ td {
 @media (min-width:1900px) {
     main {
 
-        p {
-            @apply 2xl:text-4xl;
-        }
-
         button {
-            @apply 2xl:text-4xl 2xl:my-10;
+            @apply 2xl:my-10;
         }
 
         input,
         label {
-            @apply 2xl:text-4xl 2xl:my-10;
+            @apply 2xl:my-10;
         }
 
         .search-img {

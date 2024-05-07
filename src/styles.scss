@@ -13,6 +13,10 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.mat-mdc-select-placeholder {
+    color: white !important;
+}
+
 .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled {
     background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important;
     border-radius: 1rem !important;

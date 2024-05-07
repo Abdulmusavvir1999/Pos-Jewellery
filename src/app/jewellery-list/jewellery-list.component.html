@@ -19,7 +19,7 @@
         <div class="flex flex-wrap justify-between items-center gap-4 bg-gray-700 mx-4 p-4 rounded-xl">
             <!-- Search -->
             <div class="flex">
-                <img class="w-5 h-5 relative left-6 top-[0.45rem]" src="../../assets/img/search.logo.png" alt="">
+                <img class="w-5 h-5 relative left-6 top-[0.3rem]" src="../../assets/img/search.logo.svg" alt="">
                 <input [(ngModel)]="search" (input)="searchMethod($event)"
                     class="pl-7 py-1 bg-transparent border rounded-xl text-white" type="text"
                     placeholder="Search Product">
@@ -30,7 +30,7 @@
 
                     <mat-form-field>
                         <mat-label class="text-white">Select an option</mat-label>
-                        <mat-select class="italic !text-white" placeholder="Select Category"
+                        <mat-select class="italic !text-white !placeholder-white" placeholder="Select Category"
                             (valueChange)="filterProduct($event)" [(ngModel)]="categoryId">
                             @for (category of categoryType; track $index) {
                             <mat-option class="!flex italic !text-white"

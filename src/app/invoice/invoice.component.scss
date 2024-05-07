@@ -4,7 +4,7 @@ aside h1 {
 
 section {
     p {
-        @apply text-gray-400 text-[1rem] 2xl:text-3xl;
+        @apply text-gray-400 text-[1rem];
     }
 
     h1 {
@@ -12,16 +12,23 @@ section {
     }
 }
 
-tr,
-th,
-td {
-    @apply border p-2 text-gray-300 border-gray-700;
-}
+//media
+@media (min-width:1900px) {
+    main {
 
-th {
-    @apply text-white;
-}
+        .table {
+            @apply left-12;
+        }
 
-.table {
-    @apply 2xl:left-10
+        tr,
+        th,
+        td {
+            @apply border p-2 text-gray-300 border-gray-700;
+        }
+
+        th {
+            @apply text-white;
+        }
+
+    }
 }

@@ -38,9 +38,11 @@
             ">
             @for (pos of posList; track $index) {
             <div (click)="addCart(pos)"
-                class=" bg-[#1F1D2B] text-white rounded-2xl italic cursor-pointer hover:opacity-80 mb-3 mt-3">
+                class="sm:flex-col bg-[#1F1D2B] text-white rounded-2xl italic cursor-pointer hover:opacity-80 mb-3 mt-3">
+                <div>
 
-                <img class=" mb-2" src="../../assets/img/no-image.svg" alt="">
+                    <img class="!w-[70%] sm:!w-[80%] m-auto" src="../../assets/img/no-image.svg" alt="">
+                </div>
                 <!-- Description -->
                 <div class="p-4">
                     <p class="font-semibold justify-start">{{pos.accessoryCategoryName|titlecase}}
