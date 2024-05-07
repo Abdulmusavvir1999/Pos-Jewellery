@@ -87,7 +87,8 @@
 
             </table>
         </div>
-        <mat-paginator #pagination class="w-full !bg-gray-500 !text-white italic !font-semibold"
+        <mat-paginator #pagination
+            class="!flex !justify-center !items-center !flex-wrap !text-nowrap w-full !bg-transparent !text-white italic !font-semibold"
             [length]="productList.length" showFirstLastButtons="button" [pageSize]="10" [pageSizeOptions]="[3,5,10,20]"
             (page)="pageNation($event)" aria-label="Select page">
         </mat-paginator>
