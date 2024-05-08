@@ -1,236 +1,233 @@
-<div class="flex justify-center items-center relative bg-gray-800 shadow-lg shadow-gray-950">
-    <!-- back -->
-    <button (click)="back()" class="back-btn bg-black rounded-full absolute left-3 top-4"><img class="w-6 h-6"
-            src="../../assets/img/back-icon.svg" alt=""></button>
-    <!-- heading -->
-    <img class="w-[5rem]" src="../../assets/img/logo jewellery.png" alt="">
-    <p class="text-center text-[#EA7C69] font-semibold text-3xl italic">pos</p>
-</div>
-<main class="flex flex-col lg:flex-row bg-[#252836]">
-
-    <!-- todo Table -->
-    <section class="w-full lg:w-2/3 p-2  h-screen overflow-hidden overflow-y-scroll">
-        <!-- Search -->
-        <div class="flex justify-center my-2">
-            <img class="relative left-7 top-1 w-6 h-6" src="../../assets/img/search.logo.svg" alt="">
-            <input [(ngModel)]="search" (input)="searchMethod($event)"
-                class=" w-1/2 p-2 pl-10  rounded-xl outline-none bg-gray-600 font-semibold text-sm text-white focus:border-[#EA7C69] focus:border"
-                type="text" placeholder="Search Product">
+<main class="h-full bg-[#252836]">
+    <header>
+        <div class="flex justify-center items-center bg-gray-800 shadow-lg shadow-gray-950">
+            <!-- back -->
+            <button (click)="back()" class="back-btn bg-black rounded-full absolute left-3 top-4"><img class="w-6 h-6"
+                    src="../../assets/img/back-icon.svg" alt=""></button>
+            <!-- heading -->
+            <img class="w-[5rem]" src="../../assets/img/logo jewellery.png" alt="">
+            <p class="text-center text-[#EA7C69] font-semibold text-3xl italic">pos</p>
         </div>
+    </header>
 
-        <!-- filter -->
-        <div
-            class="flex text-nowrap overflow-x-scroll gap-8 max-w-full justify-between text-white font-semibold m-auto">
-            @for (item of categoryType; track $index) {
-            <div>
-                <button (click)="filterProduct(item.id)"
-                    class="relative focus:underline focus:text-orange-400 hover:opacity-75 mb-3 italic ml-4">{{item.name}}
-                </button>
-                @if (categoryId != -1) {
-                <img class="cancel-img absolute top-[9.65rem] left-1 w-4 h-4 bg-gray-950 rounded cursor-pointer hover:bg-red-600"
-                    (click)="clearProject()" src="../../assets/img/close.svg" alt="">
+    <div class="flex flex-col lg:flex-row">
+        <!-- todo Table -->
+        <section class="w-full lg:w-2/3 p-2  h-screen overflow-hidden overflow-y-scroll">
+            <!-- Search -->
+            <div class="flex justify-center my-2">
+                <img class="relative left-7 top-1 w-6 h-6" src="../../assets/img/search.logo.svg" alt="">
+                <input [(ngModel)]="search" (input)="searchMethod($event)"
+                    class=" w-1/2 p-2 pl-10  rounded-xl outline-none bg-gray-600 font-semibold text-sm text-white focus:border-[#EA7C69] focus:border"
+                    type="text" placeholder="Search Product">
+            </div>
+
+            <!-- filter -->
+            <div
+                class="flex text-nowrap overflow-x-scroll gap-8 max-w-full justify-between text-white font-semibold m-auto">
+                @for (item of categoryType; track $index) {
+                <div>
+                    <button (click)="filterProduct(item.id)"
+                        class="relative focus:underline focus:text-orange-400 hover:opacity-75 mb-3 italic ml-4">{{item.name}}
+                    </button>
+                    @if (categoryId != -1) {
+                    <img class="cancel-img absolute top-[9.65rem] left-1 w-4 h-4 bg-gray-950 rounded cursor-pointer hover:bg-red-600"
+                        (click)="clearProject()" src="../../assets/img/close.svg" alt="">
+                    }
+                </div>
+                }
+
+            </div>
+
+
+            <!-- table -->
+
+            <!-- <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-12 h-screen  overflow-y-scroll
+                "> -->
+            <div class="flex flex-wrap gap-x-4 gap-y-10  mb-[2rem]">
+                @for (pos of posList; track $index) {
+                <div (click)="addCart(pos)"
+                    class="sm:flex-col w-[18rem] h-[20rem] bg-[#1F1D2B] text-white rounded-2xl italic cursor-pointer hover:opacity-80 mt-3">
+                    <div class="">
+
+                        <img class="p-4 bg-gray-600 h-[10rem] rounded-t-xl w-[18rem] m-auto"
+                            src="../../assets/img/no-image1.svg" alt="">
+                    </div>
+                    <!-- Description -->
+                    <div class="p-4 text-center">
+                        <p class="font-semibold justify-start">{{pos.accessoryCategoryName|titlecase}}
+                        </p>
+                        <p class=" text-[#ABBBC2]">Certain gold salts are still
+                            medicine.</p>
+                        <p class="">{{pos.weight}} gm</p>
+                    </div>
+                    <div>
+                        <p class="bg-gray-600 text-gray-100 p-4 rounded-b-xl font-semibold text-center">RS :
+                            {{pos.rate|number:"0.0-0"}}
+                        </p>
+                    </div>
+                </div>
                 }
             </div>
-            }
+        </section>
 
-        </div>
+        <!-- todo billing Side -->
 
+        <section class="relative w-full lg:w-1/3 bg-gray-900 p-4 h-screen">
 
-        <!-- table -->
-
-        <!-- <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-12 h-screen  overflow-y-scroll
-            "> -->
-        <div class="flex flex-wrap gap-x-4 gap-y-10  ">
-            @for (pos of posList; track $index) {
-            <div (click)="addCart(pos)"
-                class="sm:flex-col w-[18rem] h-[20rem] bg-[#1F1D2B] text-white rounded-2xl italic cursor-pointer hover:opacity-80 mt-3">
-                <div class="">
-
-                    <img class="p-4 bg-gray-600 h-[10rem] rounded-t-xl w-[18rem] m-auto"
-                        src="../../assets/img/no-image1.svg" alt="">
+            <p class="text-white text-3xl font-semibold">Cart Items</p>
+            <div class="h-[30rem] xl:h-full  overflow-y-scroll w-full">
+                <div class="flex flex-wrap justify-between mt-3 mb-4 items-center">
+                    <button
+                        class="border border-[#EA7C69] text-white  py-3 px-12  rounded-xl font-semibold hover:opacity-75"
+                        (click)="draftPage()">Draft Page</button>
+                    <button
+                        class="border border-[#EA7C69] text-white py-3 px-12 rounded-xl font-semibold hover:opacity-75"
+                        (click)="service()">Recent Draft</button>
                 </div>
-                <!-- Description -->
-                <div class="p-4 text-center">
-                    <p class="font-semibold justify-start">{{pos.accessoryCategoryName|titlecase}}
-                    </p>
-                    <p class=" text-[#ABBBC2]">Certain gold salts are still
-                        medicine.</p>
-                    <p class="">{{pos.weight}} gm</p>
+                <div class="flex flex-wrap">
+
+                    <label for="name" class="text-white text-2xl m-2">Name :</label>
+                    <input id="name" name="name" type="text"
+                        class="w-[40%] m-2 p-2 rounded-2xl outline-none bg-gray-600 font-semibold text-white placeholder-gray-200"
+                        [(ngModel)]="customerName" placeholder="Enter customer name">
+
                 </div>
-                <div>
-                    <p class="bg-gray-400 text-black p-4 rounded-b-xl font-semibold text-center">RS :
-                        {{pos.rate|number:"0.0-0"}}
-                    </p>
-                </div>
-            </div>
-            }
-        </div>
-    </section>
-
-    <!-- todo billing Side -->
-
-    <section class="w-full lg:w-1/3 bg-gray-900 p-4 h-screen">
-
-        <p class="text-white text-3xl font-semibold">Cart Items</p>
-        <div class="h-[30rem]  overflow-y-scroll w-full">
-            <div class="flex flex-wrap justify-between mt-3 mb-4 items-center">
-                <button
-                    class="border border-[#EA7C69] text-white  py-3 px-12  rounded-xl font-semibold hover:opacity-75"
-                    (click)="draftPage()">Draft Page</button>
-                <button class="border border-[#EA7C69] text-white py-3 px-12 rounded-xl font-semibold hover:opacity-75"
-                    (click)="service()">Recent Draft</button>
-            </div>
-            <div class="flex flex-wrap">
-
-                <label for="name" class="text-white text-2xl m-2">Name :</label>
-                <input id="name" name="name" type="text"
-                    class="w-[40%] m-2 p-2 rounded-2xl outline-none bg-gray-600 font-semibold text-white placeholder-gray-200"
-                    [(ngModel)]="customerName" placeholder="Enter customer name">
-
-            </div>
 
 
+                <div class="flex flex-col relative text-white rounded px-4 ">
+                    <p class="font-semibold">Order# {{orderNumber}}</p>
+                    <table class="mb-[11.5rem]">
+                        <thead>
+                            <tr>
+                                <th>Items</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        @for (cart of carts; track $index) {
+                        <tbody class="border border-[#EA7C69]">
+                            <tr
+                                class=" pt-7 px-5  shadow-xl shadow-black bg-[#1F1D2B] rounded-xl mb-3 min-w-[20rem] overflow-x-scroll">
+                                <td>
+                                    <p class="">
+                                        {{cart.accessoryCategoryName|titlecase}}
+                                </td>
+                                <td class="flex justify-center items-center mt-3">
+                                    <button (click)=" decreaseQuantity($index)"
+                                        class="text-[#EA7C69] border mr-1   border-[#EA7C69] rounded-md text-2xl py1 px-[0.6rem] hover:text-white">
+                                        -</button>
+                                    <button class="">{{cart.quantity}}</button>
+                                    <button (click)="increaseQuantity($index)"
+                                        class="text-[#EA7C69] border ml-1   border-[#EA7C69] rounded-md text-2xl py1 px-2 hover:text-white">+</button>
+                                </td>
+                                <td>
+                                    <p class="pt-2">{{cart.rate|number:"0.0-0"}}</p>
+                                </td>
+                                <td>
+                                    <p class="pt-2"><button
+                                            class="border border-[#EA7C69] rounded-md p-2 font-bold hover:opacity-75"
+                                            (click)="removeCart($index)"><img src="../../assets/img/draft.svg"
+                                                alt=""></button>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                        }
+                    </table>
 
+                    <!-- normal cart items -->
 
-            <div class="flex flex-col relative text-white rounded px-4 ">
-                <p class="font-semibold">Order# {{orderNumber}}</p>
+                    <!-- @for (cart of carts; track $index) {
+                    <div
+                        class="flex justify-between items-center gap-2 pt-7 px-5  shadow-xl shadow-black bg-[#1F1D2B] rounded-xl mb-3 min-w-[20rem] overflow-x-scroll">
+                        <p class="flex flex-wrap items-center justify-start text-nowrap pt-2">
+                            {{cart.accessoryCategoryName|titlecase}}
+    
+                        <div class="flex gap-1 items-center md:gap-3">
+                            <button (click)="decreaseQuantity($index)"
+                                class="text-[#EA7C69]  border border-[#EA7C69] rounded-md text-2xl py1 px-2 hover:text-white">-</button>
+                            <button class="">{{cart.quantity}}</button>
+                            <button (click)="increaseQuantity($index)"
+                                class="text-[#EA7C69]  border border-[#EA7C69] rounded-md text-2xl py1 px-2 hover:text-white">+</button>
+                        </div>
+    
+                        <p class="pt-2">{{cart.rate|number:"0.0-0"}}</p>
+                        <p class="pt-2"><button class="border border-[#EA7C69] rounded-md p-2 font-bold hover:opacity-75"
+                                (click)="removeCart($index)"><img src="../../assets/img/draft.svg" alt=""></button>
+                        </p>
+                    </div> -->
 
-                <!-- <div class="flex justify-between gap-2 p-4 min-w-[20rem] overflow-x-scroll">
-                    <p>Items</p>
-                    <p>Qty</p>
-                    <p>Price</p>
-                    <p>Action</p>
-                </div> -->
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Items</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    @for (cart of carts; track $index) {
-                    <tbody class="border border-[#EA7C69]">
-                        <tr
-                            class=" pt-7 px-5  shadow-xl shadow-black bg-[#1F1D2B] rounded-xl mb-3 min-w-[20rem] overflow-x-scroll">
-                            <td>
-                                <p class="">
-                                    {{cart.accessoryCategoryName|titlecase}}
-                            </td>
-                            <td class="flex justify-center items-center mt-3">
-                                <button (click)=" decreaseQuantity($index)"
-                                    class="text-[#EA7C69] border mr-1   border-[#EA7C69] rounded-md text-2xl py1 px-[0.6rem] hover:text-white">
-                                    -</button>
-                                <button class="">{{cart.quantity}}</button>
-                                <button (click)="increaseQuantity($index)"
-                                    class="text-[#EA7C69] border ml-1   border-[#EA7C69] rounded-md text-2xl py1 px-2 hover:text-white">+</button>
-                            </td>
-                            <td>
-                                <p class="pt-2">{{cart.rate|number:"0.0-0"}}</p>
-                            </td>
-                            <td>
-                                <p class="pt-2"><button
-                                        class="border border-[#EA7C69] rounded-md p-2 font-bold hover:opacity-75"
-                                        (click)="removeCart($index)"><img src="../../assets/img/draft.svg"
-                                            alt=""></button>
+                    <!-- <div
+                        class="flex relative justify-between h-24  shadow-xl shadow-black bg-[#1F1D2B] rounded-xl mb-3 min-w-[20rem] ">
+                        <div class="flex justify-center items-center">
+                            <div>
+                                <img class="bg-gray-500 w-32 h-24  rounded-l-xl p-2" src="../../assets/img/no-image1.svg"
+                                    alt="">
+                            </div>
+    
+                            <div class="absolute right-5 flex flex-col items-center justify-center ml-10">
+                                <p class="absolute right-6 text-nowrap text-2xl"> {{cart.accessoryCategoryName|titlecase}}
                                 </p>
-                            </td>
-                        </tr>
-                    </tbody>
-                    }
-                </table>
+    
+    
+                                
+                    <div class="absolute flex justify-center items-center gap-2">
+                        <button class=" text-2xl border-[#EA7C69] text-[#EA7C69]  px-2 rounded-full border-2"
+                            (click)="decreaseQuantity($index)">-</button>
+                        <p class="absolute top-[0.3rem] text-xl">{{cart.quantity}}</p>
+                        <button class=" text-2xl border-[#EA7C69] text-[#EA7C69]  px-2 rounded-full border-2"
+                            (click)="increaseQuantity($index)">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute right-28 top-16">
+                <p class="  text-xl text-nowrap">{{cart.rate|number:"0.0-0"}}</p>
+    
+            </div>
+            <button class="absolute top-8 rounded-sm p-2 font-bold hover:opacity-75"><img (click)="removeCart($index)"
+                    class="w-8" src="../../assets/img/draft.svg" alt=""></button>
+    
+            </div> -->
 
-                <!-- normal cart items -->
 
-                <!-- @for (cart of carts; track $index) {
-                <div
-                    class="flex justify-between items-center gap-2 pt-7 px-5  shadow-xl shadow-black bg-[#1F1D2B] rounded-xl mb-3 min-w-[20rem] overflow-x-scroll">
-                    <p class="flex flex-wrap items-center justify-start text-nowrap pt-2">
-                        {{cart.accessoryCategoryName|titlecase}}
 
-                    <div class="flex gap-1 items-center md:gap-3">
-                        <button (click)="decreaseQuantity($index)"
-                            class="text-[#EA7C69]  border border-[#EA7C69] rounded-md text-2xl py1 px-2 hover:text-white">-</button>
-                        <button class="">{{cart.quantity}}</button>
-                        <button (click)="increaseQuantity($index)"
-                            class="text-[#EA7C69]  border border-[#EA7C69] rounded-md text-2xl py1 px-2 hover:text-white">+</button>
+                </div>
+            </div>
+            <!-- overall -->
+
+            <div class="absolute bg-gray-900 bottom-0 left-0 right-3 p-3 ">
+                <hr class="border border-gray-700 roundedful border-dashed">
+                <div>
+                    <!-- Discount -->
+                    <div class="flex justify-between">
+                        <p class="text-[#ABBBC2] text-center font-semibold">Discount: </p>
+                        <p class="text-white text-center font-semibold">---</p>
                     </div>
 
-                    <p class="pt-2">{{cart.rate|number:"0.0-0"}}</p>
-                    <p class="pt-2"><button class="border border-[#EA7C69] rounded-md p-2 font-bold hover:opacity-75"
-                            (click)="removeCart($index)"><img src="../../assets/img/draft.svg" alt=""></button>
-                    </p>
-                </div> -->
-
-                <!-- <div
-                    class="flex relative justify-between h-24  shadow-xl shadow-black bg-[#1F1D2B] rounded-xl mb-3 min-w-[20rem] ">
-                    <div class="flex justify-center items-center">
-                        <div>
-                            <img class="bg-gray-500 w-32 h-24  rounded-l-xl p-2" src="../../assets/img/no-image1.svg"
-                                alt="">
-                        </div>
-
-                        <div class="absolute right-5 flex flex-col items-center justify-center ml-10">
-                            <p class="absolute right-6 text-nowrap text-2xl"> {{cart.accessoryCategoryName|titlecase}}
-                            </p>
-
-
-                            
-                <div class="absolute flex justify-center items-center gap-2">
-                    <button class=" text-2xl border-[#EA7C69] text-[#EA7C69]  px-2 rounded-full border-2"
-                        (click)="decreaseQuantity($index)">-</button>
-                    <p class="absolute top-[0.3rem] text-xl">{{cart.quantity}}</p>
-                    <button class=" text-2xl border-[#EA7C69] text-[#EA7C69]  px-2 rounded-full border-2"
-                        (click)="increaseQuantity($index)">+</button>
-                </div>
-            </div>
-        </div>
-        <div class="absolute right-28 top-16">
-            <p class="  text-xl text-nowrap">{{cart.rate|number:"0.0-0"}}</p>
-
-        </div>
-        <button class="absolute top-8 rounded-sm p-2 font-bold hover:opacity-75"><img (click)="removeCart($index)"
-                class="w-8" src="../../assets/img/draft.svg" alt=""></button>
-
-        </div> -->
-
-
-
-            </div>
-        </div>
-        <!-- overall -->
-
-        <div class="">
-            <hr class="border border-gray-700 roundedful">
-            <div>
-                <!-- Discount -->
-                <div class="flex justify-between">
-                    <p class="text-[#ABBBC2] text-center font-semibold">Discount: </p>
-                    <p class="text-white text-center font-semibold">---</p>
+                    <!-- sub total -->
+                    <div class="flex justify-between">
+                        <p class="text-[#ABBBC2] text-center font-semibold">Sub total: </p>
+                        <p class="text-white text-center font-semibold">{{amount()|number:"0.0-0"}}</p>
+                    </div>
                 </div>
 
-                <!-- sub total -->
-                <div class="flex justify-between">
-                    <p class="text-[#ABBBC2] text-center font-semibold">Sub total: </p>
-                    <p class="text-white text-center font-semibold">{{amount()|number:"0.0-0"}}</p>
+                <div class="flex flex-wrap justify-center items-center relative gap-4 z-10">
+                    <button
+                        class="text-white bg-[#EA7C69] py-4 px-8 rounded-xl font-semibold  hover:opacity-75 md:px-16"
+                        (click)="draft()">Draft</button>
+                    <button
+                        class="text-white border border-[#EA7C69] py-4 px-8 rounded-xl font-semibold  hover:opacity-75 md:px-16"
+                        (click)="invoice()">Invoice</button>
+                    <!-- <button
+                        class="flex justify-center items-center py-4 px-12  text-[#EA7C69] border border-[#EA7C69]  rounded-xl font-semibold hover:opacity-75 md:px-8"
+                        (click)="invoice()">
+                        <img class="w-8 rotate-[145deg]" src="../../assets/img/invoice1.svg" alt="">
+                        Invoice</button> -->
                 </div>
             </div>
+        </section>
 
-            <div class="flex flex-wrap justify-center items-center relative gap-4 z-10">
-                <button class="text-white bg-[#EA7C69] py-4 px-8 rounded-xl font-semibold  hover:opacity-75 md:px-16"
-                    (click)="draft()">Draft</button>
-                <button
-                    class="text-white border border-[#EA7C69] py-4 px-8 rounded-xl font-semibold  hover:opacity-75 md:px-16"
-                    (click)="invoice()">Invoice</button>
-                <!-- <button
-                    class="flex justify-center items-center py-4 px-12  text-[#EA7C69] border border-[#EA7C69]  rounded-xl font-semibold hover:opacity-75 md:px-8"
-                    (click)="invoice()">
-                    <img class="w-8 rotate-[145deg]" src="../../assets/img/invoice1.svg" alt="">
-                    Invoice</button> -->
-            </div>
-        </div>
-    </section>
+    </div>
 
 </main>
