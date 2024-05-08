@@ -104,6 +104,8 @@ export class PosComponent {
       next: (res: any) => {
         const response = this.commonService.decryptData({ data: res })
         this.categoryType = response
+        console.log(response);
+
       }
     });
   }
@@ -136,7 +138,7 @@ export class PosComponent {
   addCart(pos: any): void {
 
     if (this.carts != undefined) {
-      let ItemIndex = this.carts.findIndex(item => item.rate === pos.rate);
+      let ItemIndex = this.carts.findIndex(item => item.id === pos.id);
       if (ItemIndex !== -1) {
         if (this.carts[ItemIndex].quantity < 10) {
           this.carts[ItemIndex].quantity++;
