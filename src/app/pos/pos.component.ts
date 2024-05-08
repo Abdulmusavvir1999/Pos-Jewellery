@@ -48,8 +48,6 @@ export class PosComponent {
 
   service(): void {
     this.details = history.state
-    console.log(this.details);
-
     if (this.details != undefined && this.details != null) {
       this.customerName = this.details.drafts?.customerName
       this.carts = this.details.drafts?.cartItems
@@ -104,8 +102,6 @@ export class PosComponent {
       next: (res: any) => {
         const response = this.commonService.decryptData({ data: res })
         this.categoryType = response
-        console.log(response);
-
       }
     });
   }
