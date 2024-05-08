@@ -19,17 +19,3 @@ th {
 td {
     @apply p-2 text-center italic;
 }
-
-@media (min-width:1900px) {
-    main {
-
-        button {
-            @apply 2xl:my-10;
-        }
-
-        input,
-        label {
-            @apply 2xl:my-10;
-        }
-    }
-}
