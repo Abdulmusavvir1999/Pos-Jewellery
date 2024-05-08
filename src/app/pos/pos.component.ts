@@ -133,73 +133,37 @@ export class PosComponent {
     }
   }
 
-  // addCart(pos: any): void {
-
-  //   if (this.carts != undefined) {
-  //     let ItemIndex = this.carts.findIndex(item => item === pos);
-
-
-  //     if (ItemIndex !== -1) {
-  //       if (this.carts[ItemIndex].quantity < 10) {
-  //         this.carts[ItemIndex].quantity++;
-  //       } else {
-  //         this.matSnackBar.open('Maximum quantity reached for this item.', 'Cart is full', {
-  //           horizontalPosition: 'center',
-  //           verticalPosition: 'top',
-  //           duration: 3000
-  //         })
-  //       }
-  //     } else {
-  //       if (this.carts.length < Infinity) {
-  //         pos.quantity;
-  //         this.carts.push(pos);
-  //       } else {
-  //         this.matSnackBar.open('Maximum items reached in the cart.', 'Cart is full', {
-  //           horizontalPosition: 'center',
-  //           verticalPosition: 'top',
-  //           duration: 3000
-  //         })
-  //       }
-  //     }
-  //   }
-  // }
-
   addCart(pos: any): void {
-    if (this.carts !== undefined) {
-      const itemIndex = this.carts.findIndex(item => item === pos);
 
-      if (itemIndex !== -1) {
-        if (this.carts[itemIndex].quantity < 10) {
-          this.carts[itemIndex].quantity++;
+    if (this.carts != undefined) {
+      let ItemIndex = this.carts.findIndex(item => item.rate === pos.rate);
+      if (ItemIndex !== -1) {
+        if (this.carts[ItemIndex].quantity < 10) {
+          this.carts[ItemIndex].quantity++;
+
         } else {
           this.matSnackBar.open('Maximum quantity reached for this item.', 'Cart is full', {
             horizontalPosition: 'center',
             verticalPosition: 'top',
             duration: 3000
-          });
+          })
         }
       } else {
         if (this.carts.length < Infinity) {
-          if (pos.quantity <= 10) {
-            pos.quantity = 1; // Set initial quantity to 1 if not already set
-            this.carts.push(pos);
-          } else {
-            this.matSnackBar.open('Maximum quantity for an item is 10.', 'Error', {
-              horizontalPosition: 'center',
-              verticalPosition: 'top',
-              duration: 3000
-            });
-          }
+
+          pos.quantity;
+          this.carts.push(pos);
         } else {
           this.matSnackBar.open('Maximum items reached in the cart.', 'Cart is full', {
             horizontalPosition: 'center',
             verticalPosition: 'top',
             duration: 3000
-          });
+          })
         }
       }
     }
   }
+
 
 
 
